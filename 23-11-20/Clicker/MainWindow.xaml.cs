@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace AsyncProgramming
@@ -24,16 +25,25 @@ namespace AsyncProgramming
 
         private void BtnDownload_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                txtDownload.Text += DownloadString("http://microsoft.com/");
-            }
-            catch (Exception ex)
-            {
-                txtExceptions.Text += ex.Message;
-            }
+            DownloadStringAsync("http://microsoft.com/");
         }
 
+
+        private void DownloadStringAsync(string url)
+        {
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() => btnDownload.IsEnabled = false);
+
+                string res = DownloadString(url);
+                Dispatcher.Invoke(() =>
+                {
+                    txtDownload.Text = res;
+                    btnDownload.IsEnabled = true;
+                });               
+            });
+
+        }
         private string DownloadString(string url)
         {
             Thread.Sleep(5000);

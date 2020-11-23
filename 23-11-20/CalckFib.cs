@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace AsyncProgramming
 {
@@ -9,15 +10,20 @@ namespace AsyncProgramming
         {
             int number = 13;
 
-            long result = CalculateFactorial(number);
+            var result = CalculatyFactorialAsync(number);
 
-            Console.WriteLine($"Результат - {result}");
+            result.ContinueWith((t) => Console.WriteLine($"Результат{t.Result}"));
 
             while (true)
             {
                 Console.Write("*");
                 Thread.Sleep(300);
             }
+        }
+
+        private static Task<long> CalculatyFactorialAsync(int num)
+        {
+            return Task.Run(() => CalculateFactorial(num));
         }
 
         private static long CalculateFactorial(int number)
