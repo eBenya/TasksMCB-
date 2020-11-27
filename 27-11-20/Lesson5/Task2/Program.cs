@@ -39,7 +39,7 @@ namespace ConsoleTEST
         {
             return await Task.Run(() =>
             {
-                for (int i = num; i > 0; i++)
+                for (int i = num; i > 0; i--)
                 {
                     num *= i;
                 }
