@@ -18,13 +18,8 @@ namespace ConsoleTEST
 {
     class Program
     {
-        static Program()
-        {
-            SynchronizationContext.SetSynchronizationContext(new ConsoleSynchronizationContext());
-        }
         static void Main(string[] args)
-        {
-            Console.WriteLine($"ContextSTART: {SynchronizationContext.Current}");
+        {            
             MainAsync();
 
             Console.ReadKey();
@@ -32,7 +27,10 @@ namespace ConsoleTEST
 
         static async Task MainAsync()
         {
+            Console.WriteLine($"ContextSTART: {SynchronizationContext.Current}");
             PrintInfo("Main Start", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name, Thread.CurrentThread.IsThreadPoolThread);
+            
+            SynchronizationContext.SetSynchronizationContext(new ConsoleSynchronizationContext());
 
             await FactorialAsync(7);
 
