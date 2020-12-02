@@ -22,8 +22,8 @@ namespace ConsoleTEST
     {        
         static void Main()
         {
-            string path = "G:\\data.txt";
-            Console.WriteLine($"File data.txt is exsist - {File.Exists("G:\\data.txt")}");
+            string path = ".\\data.txt";
+            Console.WriteLine($"File data.txt is exsist - {File.Exists(path)}");
             using (StreamReader sr = new StreamReader(path))
             {
                 string line;
