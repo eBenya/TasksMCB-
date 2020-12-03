@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,13 @@ namespace ConsoleTEST
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        
+        //Create logger factory.
+        public ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddProvider(new MyLoggerProvider());
+        });
+
         public ApplicationContext()
         {
             //Database.EnsureDeleted();   //delete Db if it exist
@@ -20,8 +28,7 @@ namespace ConsoleTEST
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CRUDApp;Trusted_Connection=True;");
-            //optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));         //capture actions by output to the degug window
-            //optionsBuilder.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted});    //capture actions by output to the file
+            optionsBuilder.UseLoggerFactory(MyLoggerFactory);
         }
     }
 }

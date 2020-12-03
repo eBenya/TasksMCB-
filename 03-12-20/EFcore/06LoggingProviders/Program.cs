@@ -20,7 +20,7 @@ namespace ConsoleTEST
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                db.GetService<ILoggerFactory>().AddProvider(new MyLoggerProvider());
+                //db.GetService<ILoggerFactory>().AddProvider(new MyLoggerProvider());
 
                 User user1 = new User { Name = "Kek", Age = 17 };
                 User user2 = new User { Name = "Puc", Age = 76 };
