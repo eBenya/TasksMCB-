@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace ConsoleTEST
         public DbSet<City> Cities { get; set; }
         public DbSet<Position> Positions { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDb;Trusted_Connection=True;");
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TestDb;Trusted_Connection=True;");
+            optionsBuilder.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
         }
     }
 
@@ -29,9 +33,9 @@ namespace ConsoleTEST
         public string Name { get; set; }
 
         public int CapitalId { get; set; }
-        public City Capital { get; set; }
+        public virtual City Capital { get; set; }
 
-        public List<Company> Companies { get; set; } = new List<Company>();
+        public virtual List<Company> Companies { get; set; } = new List<Company>();
     }
     public class Company
     {
@@ -39,9 +43,9 @@ namespace ConsoleTEST
         public string Name { get; set; }
 
         public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
-        public List<User> Users { get; set; } = new List<User>();
+        public virtual List<User> Users { get; set; } = new List<User>();
     }
     public class User
     {
@@ -49,17 +53,17 @@ namespace ConsoleTEST
         public string Name { get; set; }
 
         public int? CompanyId { get; set; }
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
         public int? PositionId { get; set; }
-        public Position Position { get; set; }
+        public virtual Position Position { get; set; }
     }
     public class Position
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public List<User> Users { get; set; } = new List<User>();
+        public virtual List<User> Users { get; set; } = new List<User>();
     }
     public class City
     {
