@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPF_TEST.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_TEST"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="305" Width="480">
+    <Grid>
+        <Button Name="btnStart_250" Content="Create 250" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Height="60" Width="150" Click="ButoonEvenHandler"/>
+        <Button x:Name="btnStart_400" Content="Create 400" HorizontalAlignment="Left" Margin="165,222,0,0" VerticalAlignment="Top" Height="60" Width="150" Click="ButoonEvenHandler"/>
+        <Button x:Name="btnStart_1000" Content="Create 1000" HorizontalAlignment="Left" Margin="320,222,0,0" VerticalAlignment="Top" Height="60" Width="150" Click="ButoonEvenHandler"/>
+        <TextBox Name="txtResault" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="207"/>
+        <TextBox x:Name="txtByteUsed" HorizontalAlignment="Left" Margin="245,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Height="207"/>
+    </Grid>
+</Window>
