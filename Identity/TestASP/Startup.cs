@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestASP.Models.Context;
 using TestASP.Models.HelpModel;
+using TestASP.Settings.ValidationSettings;
 
 namespace TestASP
 {
@@ -24,9 +25,11 @@ namespace TestASP
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IPasswordValidator<User>, CustomPasswordValidation>(o => new CustomPasswordValidation(3));
+
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<ApplicationContext>(o=>o.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;"));
+            services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;"));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
