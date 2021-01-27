@@ -1,0 +1,31 @@
+﻿@model TestASP.Models.HelpModel.RegisterViewModel
+
+<div class="container">
+    <h2>Rigister a new user V2</h2>
+    <form method="post" asp-controller="Account" asp-action="RegisterWithConfirm">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email">@Html.DisplayNameFor(c => c.Email)</label><br />
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Year">@Html.DisplayNameFor(c => c.Year)</label><br />
+            <input asp-for="Year" />
+            <span asp-validation-for="Year"></span>
+        </div>
+        <div>
+            <label asp-for="Password">@Html.DisplayNameFor(c => c.Password)</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="PasswordConfirm">@Html.DisplayNameFor(c => c.PasswordConfirm)</label><br />
+            <input asp-for="PasswordConfirm" />
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Rigister" />
+        </div>
+    </form>
+</div>

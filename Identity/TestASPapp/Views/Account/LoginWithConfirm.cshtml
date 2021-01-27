@@ -1,0 +1,26 @@
+﻿@model TestASP.Models.HelpModel.LoginViewModel
+
+<div class="container">
+    <h2>Enter in (V2)</h2>
+    <form method="post" asp-controller="Account" asp-action="LoginWithConfirm"
+            asp-route-returnUrl="@Model.ReturnUrl">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email">@Html.DisplayNameFor(c => c.Email)</label><br />
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password">@Html.DisplayNameFor(c => c.Password)</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="RememberMe">@Html.DisplayNameFor(c => c.RememberMe)</label><br />
+            <input asp-for="RememberMe" />
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Enter" />
+        </div>
+    </form>
+</div>

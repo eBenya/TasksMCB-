@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h2>Start Page</h2>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>@User.Identity.Name</p>
+        <p>
+            <a class="btn btn-primary" asp-controller="Users" asp-action="Index">Users list</a>
+            <a class="btn btn-primary" asp-controller="Roles" asp-action="Index">Rolles list</a>
+        </p>
+
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" class="btn btn-warning" />
+        </form>
+    }
+    else
+    {
+        <div class="container alert alert-primary">
+            <p>Links without confirmation</p>
+            <a class="btn btn-primary" role="button" asp-controller="Account" asp-action="Register">SignUp</a>
+            <a class="btn btn-primary" role="button" asp-controller="Account" asp-action="Login">LogIn</a>
+        </div>
+        <div class="container alert alert-info">
+            <p>Links to confirmation</p>
+            <a class="btn btn-secondary" role="button" asp-controller="Account" asp-action="RegisterWithConfirm">SignUp</a>
+            <a class="btn btn-secondary" role="button" asp-controller="Account" asp-action="LoginWithConfirm">LogIn</a>
+        </div>
+    }
+</div>
