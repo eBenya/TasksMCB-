@@ -28,11 +28,12 @@ namespace TestASP
             services.AddTransient<IPasswordValidator<User>, CustomPasswordValidation>(o => new CustomPasswordValidation(3));
 
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            //services.AddRazorPages();
             services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;"));
 
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationContext>();
+                .AddEntityFrameworkStores<ApplicationContext>()
+                .AddDefaultTokenProviders();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
@@ -58,7 +59,7 @@ namespace TestASP
                 endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
             });
         }
     }

@@ -1,6 +1,6 @@
 ﻿@model TestASP.Models.HelpModel.RegisterViewModel
-<h2>Rigister a new user</h2>
-<form method="post" asp-controller="Account" asp-action="Register">
+<h2>Rigister a new user V2</h2>
+<form method="post" asp-controller="Account" asp-action="RegisterWithConfirm">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email">@Html.DisplayNameFor(c => c.Email)</label><br />
@@ -8,7 +8,7 @@
         <span asp-validation-for="Email"></span>
     </div>
     <div>
-        <label asp-for="Year">@Html.DisplayNameFor(c=>c.Year)</label><br />
+        <label asp-for="Year">@Html.DisplayNameFor(c => c.Year)</label><br />
         <input asp-for="Year" />
         <span asp-validation-for="Year"></span>
     </div>
@@ -23,6 +23,6 @@
         <span asp-validation-for="PasswordConfirm"></span>
     </div>
     <div>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Rigister" />
     </div>
 </form>
